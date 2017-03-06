@@ -1,29 +1,32 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-  <link rel="stylesheet" href="./CSS/master.css">
-</head>
-
-<title>Medium article tracker</title>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif|Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif|Playfair+Display+SC|Rokkitt" rel="stylesheet">
+    ##<link rel="stylesheet" href="/CSS/master.css">
+    <title>Medium article tracker</title>
+  </head>
 
   <body>
+    
+    <div id="header">
+      <h1> Sparta Medium article tracker</h1>
+      <hr>
+    </div>
 
-    <h1>Medium Sparta Global article tracker</h1>
-
-    <ul class="list"> 
-      <% @posts.each do |post| %>
-        <li><a href <% post['url'] %>> <%= post['title'] %></a></li><br>
-        <li><%= post['author_details']['name'] %></li><br>
-        <li><%= post['author_details']['bio'] %></li><br>
-        <li><%= post['author_details']['avatar_url'] %></li><br>
-      <% end %>
-    </ul>
- 
+    <div id="body">
+      <ul id="list"> 
+        <% @posts.each do |post| %>
+          <li><img src="<%= post['author_details']['avatar_url']%>"></li>
+          <li><a href="<%= post['url']%>"> <%= post['title'] %> </a></li>
+          <li><%= post['author_details']['name'] %></li>
+          <li><%= post['author_details']['bio'] %></li><br>
+        <% end %>
+      </ul>
+    </div>
   </body>
-
 </html>
-
 
 
 

@@ -1,6 +1,77 @@
-
-
-
-ul {
-  color: red;
+body {
+  background-image: url(https://internontheroad.files.wordpress.com/2012/05/black-and-white-highway4.png);
+  max-width: 100%;
+  max-height: 100%;
+  background-size: cover;
+  
 }
+
+#header {
+  background: #2E373C;
+  height: 80px;
+  width: 100%;
+  display: inline-block;
+
+}
+
+h1 {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 540%;
+  font-weight: 200;
+  margin-top: -.5em;
+  margin-left: -.1em;
+  margin-right: -.2em;
+  color: white;
+}
+
+#list {
+  list-style: none;
+  font-family: 'Playfair Display', serif;
+  text-decoration: none;
+  color: white;
+  font-size: 130%;
+  font-weight: 700%;
+  text-shadow: 2px 2px black;
+}
+
+
+ul a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color:#00A0C6;
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+hr {
+   display: block;
+   padding: 0;
+   margin-right: auto;
+   margin-top: -50px;
+   margin-left: auto;
+   height: 0;
+   width: 100%;
+   max-height: 0;
+   font-size: 4px;
+   line-height: 0;
+   border: none;
+   border-top: 5px solid #00A0C6;
+   border-bottom: 10px solid white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

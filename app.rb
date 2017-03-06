@@ -1,27 +1,15 @@
 require 'sinatra'
 require 'pry'
 require './models/medium_arts.rb'
-require './models/user.rb'
-
-
 
 class App < Sinatra::Base
 
-
   get '/' do 
-
-  @posts = Post.get_posts('sparta-article')
-
-  erb :index
-
+    @posts = Post.get_posts('big-data')
+    erb :index
   end
 
 end
-
-
-
-
-
 
   #  get '/' do
     

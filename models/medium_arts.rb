@@ -2,40 +2,39 @@ require 'pry'
 require 'httparty'
 require 'json'
 
-  
 class Post
 
   attr_reader :title, :url, :name, :bio, :avatar_url
 
   def self.get_posts(tag)
     posts = []
-    response = HTTParty.get("https://medium.com/_/api/tags/#{tag}/stream", headers: { 'Accept': 'application/json' })
+    response = HTTParty.get("https://medium.com/_/api/tags/#{tag}/stream?limit=25", headers: { 'Accept': 'application/xml' })
     data = JSON.parse(response.body[16..-1])
+
     data["payload"]["references"]["Post"].each do |_k, v|
+      author = data["payload"]["references"]["User"][v["creatorId"]]
+      author["avatar_url"] = "https://cdn-images-1.medium.com/fit/c/100/100/#{author['imageId']}"
+      
+      ["type", "mediumMemberAt", "allowNotes", "backgroundImageId", "imageId"].each { |k| author.delete(k) }
 
-    author = data["payload"]["references"]["User"][v["creatorId"]]
-    
-    author["avatar_url"] = "https://cdn-images-1.medium.com/fit/c/200/200/#{author['imageId']}"
+      my_hash = {
+        "title" => v["title"],
+        "url" => "http://medium.com/@#{author['username']}/#{v["uniqueSlug"]}",
+        "author_details" => author
+      }
 
-    ["type", "mediumMemberAt", "allowNotes", "backgroundImageId", "imageId"].each { |k| author.delete(k) }
-
-    my_hash = {
-      "title" => v["title"],
-      "url" => "http://medium.com/@#{author['username']}/#{v["uniqueSlug"]}",
-      "author_details" => author
-    }
-    posts << my_hash
-  end
+      posts << my_hash
+    end
     return posts
   end
 
-  def initialize(hash)
-    @title = hash["title"]
-    @url = hash["url"]
-    @name = hash["author_details"]["name"] 
-    @bio = hash["author_details"]["bio"]
-    @avatar_url = hash["author_details"]["avatar_url"]
-  end
+  # def initialize(hash)
+  #   @title = hash["title"]
+  #   @url = hash["url"]
+  #   @name = hash["author_details"]["name"] 
+  #   @bio = hash["author_details"]["bio"]
+  #   @avatar_url = hash["author_details"]["avatar_url"]
+  # end
 
 end
 
